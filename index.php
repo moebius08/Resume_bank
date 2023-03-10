@@ -12,6 +12,17 @@ global $action;
 
 });
 
+//index
+$action->helper->route('about_us_content',function() {
+    global $action;
+    
+        $data['title'] = 'ResumeBank';
+     $action->view->load('about_header',$data);
+     $action->view->load('navbar',$data);
+     $action->view->load('about_us_content');
+    
+    });
+
         //for logouts
         $action->helper->route('action/createresume',function() {
             global $action;

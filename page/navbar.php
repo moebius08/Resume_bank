@@ -10,10 +10,7 @@
 
     <ul class="navbar-nav">
       <li class="about">
-        <a class="nav-link" href="#">About Us</a>
-      </li>
-      <li class="contact">
-        <a class="nav-link" href="#">Contact</a>
+        <a class="nav-link" href="<?=$action->helper->url('about_us_content')?>">About Us</a>
       </li>
     </ul>
 
