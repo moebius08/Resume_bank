@@ -12,6 +12,17 @@ global $action;
 
 });
 
+//index
+$action->helper->route('about_us_content',function() {
+    global $action;
+    
+        $data['title'] = 'ResumeBank';
+     $action->view->load('about_header',$data);
+     $action->view->load('navbar',$data);
+     $action->view->load('about_us_content');
+    
+    });
+
         //for logouts
         $action->helper->route('action/createresume',function() {
             global $action;
@@ -152,10 +163,6 @@ $action->helper->route('home',function() {
     $action->onlyForAuthUser();
     $data['title'] = 'ResumeBank';
     $data['myresumes'] = 'active';
-    $users = $action->db->read('users','id,full_name',"WHERE id='".$action->user_id()."'");
-    $users = $users[0];
-    $data['user'] = $users;
-    print_r($data['user']);
 
     $data['resumes']=$action->db->read('resumes','*',"WHERE user_id=".$action->user_id());
 
