@@ -163,6 +163,10 @@ $action->helper->route('home',function() {
     $action->onlyForAuthUser();
     $data['title'] = 'ResumeBank';
     $data['myresumes'] = 'active';
+    $users = $action->db->read('users','id,full_name',"WHERE id='".$action->user_id()."'");
+    $users = $users[0];
+    $data['user'] = $users;
+    print_r($data['user']);
 
     $data['resumes']=$action->db->read('resumes','*',"WHERE user_id=".$action->user_id());
 
