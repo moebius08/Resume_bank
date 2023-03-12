@@ -1,0 +1,7 @@
+.removeskill {
+    cursor: pointer;
+}
+
+.removeskill:hover {
+    opacity: 0.7;
+}
