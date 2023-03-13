@@ -166,14 +166,25 @@ $action->helper->route('home',function() {
     $users = $action->db->read('users','id,full_name',"WHERE id='".$action->user_id()."'");
     $users = $users[0];
     $data['user'] = $users;
-    print_r($data['user']);
 
     $data['resumes']=$action->db->read('resumes','*',"WHERE user_id=".$action->user_id());
-
 
      $action->view->load('home_header',$data);
      $action->view->load('navbar',$data);
      $action->view->load('home_content',$data);
+     $action->view->load('footer');
+    });
+
+    //for all resume
+    $action->helper->route('database',function() {
+    global $action;
+    $data['title'] = 'ResumeBank';
+    $data['myresumes'] = 'active';
+    $data['resumes'] = $action->db->read('resumes', '*');
+
+     $action->view->load('home_header',$data);
+     $action->view->load('navbar',$data);
+     $action->view->load('all_resume',$data);
      $action->view->load('footer');
     });
     

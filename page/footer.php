@@ -3,6 +3,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="<?=$action->helper->loadjs('main.js')?>"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
             const Toast = Swal.mixin({
@@ -170,8 +171,23 @@ function copyurl(url) {
         icon: 'success',
         title: 'Share link Copied'
     })
-
 }
+$(document).ready(function() {
+    $("#searchbox").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $('.col-md-6').each(function() {
+            var profileName = $(this).find('.card-title').text().toLowerCase();
+            var position = $(this).find('p:contains("Position")').text().toLowerCase();
+            var location = $(this).find('p:contains("Location")').text().toLowerCase();
+            var skills = $(this).find('#skills').text().toLowerCase();
+            if (profileName.indexOf(value) > -1 || position.indexOf(value) > -1 || location.indexOf(value) > -1 || skills.indexOf(value) > -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+});
 
         
     </script>
