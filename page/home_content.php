@@ -1,5 +1,4 @@
 
-
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-2">
@@ -21,6 +20,21 @@
         <div class="card-body">
           <?php
           foreach($resumes as $resume){
+            $resume['contact'] = str_replace('\\',"",$resume['contact']);
+            $resume['skills'] = str_replace('\\',"",$resume['skills']);
+            $resume['works'] = str_replace('\\',"",$resume['experience']);
+            $resume['education'] = str_replace('\\',"",$resume['education']);
+
+            $contact = json_decode($resume['contact']);
+            $skills = json_decode($resume['skills']);
+            $works = json_decode($resume['experience']);
+            $education = json_decode($resume['education']);
+
+            if (!empty($resume['objective'])) {
+              $resume['objective'] = str_replace('\\',"",$resume['objective']);
+              $objective = json_decode($resume['objective']);
+          }
+
           ?>
           <div class="card my-3">
             <div class="card-body">

@@ -23,7 +23,7 @@ $action->helper->route('about_us_content',function() {
     
     });
 
-        //for logouts
+        //for creating resume
         $action->helper->route('action/createresume',function() {
             global $action;
             $action->onlyForAuthUser();
@@ -51,8 +51,11 @@ $action->helper->route('about_us_content',function() {
                 $work[$key]['company'] = $action->db->clean($value);
                 $work[$key]['jobrole'] = $action->db->clean($_POST['jobrole'][$key]);
                 $work[$key]['w_duration'] = $action->db->clean($_POST['w_duration'][$key]);
-                $work[$key]['work_desc'] = $action->db->clean($_POST['work_desc'][$key]);
+                // Replace \r\n with \n in the work_desc field
+                $work_desc = str_replace("\r\n", "", $_POST['work_desc'][$key]);
+                $work[$key]['work_desc'] = $action->db->clean($work_desc);
             }
+            
             $resume_data[6] = json_encode($work);
             $resume_data[7] = json_encode($education);
             $resume_data[8] = $action->helper->UID();

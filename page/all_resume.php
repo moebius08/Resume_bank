@@ -22,6 +22,11 @@
             $works = json_decode($resume['experience']);
             $education = json_decode($resume['education']);
 
+            if (!empty($resume['objective'])) {
+              $resume['objective'] = str_replace('\\',"",$resume['objective']);
+              $objective = json_decode($resume['objective']);
+          }
+
             // creating a new row after every 2 cards
             if ($count % 2 == 0) {
               echo '<div class="row">';
@@ -32,6 +37,32 @@
                 <div class="card-body">
                   <h5 class="card-title"><?=$resume['headline']?></h5>
                   <p class="card-text"><?=$resume['objective']?></p>
+                  <label for="job">Experience/s: </label>
+                  <?php 
+								if(count($works)<1) {
+									?>
+									<div class="job last">
+
+									<h6>Fresher</h6>
+
+									</div>
+
+									<?php 
+								}
+								?>
+
+						<?php 
+								foreach($works as $work) {
+									?>
+								<div class="job">
+								<h6><?=$work->company?> (<?=$work->w_duration?>)</h6>
+								<h6><?=$work->jobrole?></h6>
+								<p> <?=$work->work_desc?> </p>
+								</div>
+									
+									<?php 
+								}
+								?>
                   <label for="skills">Skills: </label>
                   <?php 
                   foreach($skills as $skill) {
@@ -41,6 +72,7 @@
                   }
                   ?>
                   <br>
+              
                   <a href="<?=$action->helper->url("resume/".$resume['url'])?>" class="btn btn-success">View</a>
                 </div>
               </div>
