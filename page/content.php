@@ -11,16 +11,16 @@
         </div>
         <div class="col shadow-sm justify-content-center" style="background-color: rgba(244,244,244,255); height: 190px;">
             <h4>Secured</h4>
-            <p>Database that is secure to ensure that your data is safe with us</p>
+            <p>Database that is secure to ensure that your data is safe with us.</p>
         </div>
     </div>
         <div class="row" >
             <div class="col shadow-sm justify-content-center" style="background-color: rgba(244,244,244,255); height: 190px;">
-                <h4>Secured</h4>
-                <p>Database that is secure to ensure that your data is safe with us</p>
+                <h4>User Friendly</h4>
+                <p>Easy to use website which you can use to upload or create a resume.</p>
             </div>
 
-        <div id="img-container" class="col-md-8 px-0" style="height: 190px">
+        <div id="img-container-aerial" class="col-md-8 px-0" style="height: 190px">
         </div>
     </div>
 </div>
