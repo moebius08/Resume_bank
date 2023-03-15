@@ -237,26 +237,48 @@ $action->helper->route('login',function($data) {
     $action->view->load('footer');
 });
 //for login action
-$action->helper->route('action/login',function() {
+$action->helper->route('action/login', function() {
     global $action;
-    $error =$action->helper->isAnyEmpty($_POST);
-    if($error){
-        $action->session->set('error',"$error is empty!");
-    }else {
+    
+    $error = $action->helper->isAnyEmpty($_POST);
+    
+    if ($error) {
+        $action->session->set('error', "$error is empty!");
+    } else {
         $email = $action->db->clean($_POST['email']);
         $password = $action->db->clean($_POST['password']);
-        $user = $action->db->read('users','id,email',"WHERE email='$email' AND password='$password'");
-        if(count($user)>0 ){
-            $action->session->set('Auth',['status'=>true,'data'=>$user[0]]);
-            $action->session->set('success','Signed in Successfully');
-            $action->helper->redirect('home');
-        }else {
-            $action->session->set('error',"Incorrect email or password");
+        
+        $user = $action->db->read('users', 'id, email, account_status', "WHERE email='$email' AND password='$password'");
+        
+        if (count($user) > 0 ) {
+            $user_status = $user[0]['account_status'];
+            
+            if ($user_status == 0) {
+                $action->session->set('Auth', [
+                    'status' => true,
+                    'data' => $user[0]
+                ]);
+                
+                $action->session->set('success', 'Signed in Successfully');
+                $action->helper->redirect('home');
+            } elseif ($user_status == 1) {
+                $action->session->set('Auth', [
+                    'status' => true,
+                    'data' => $user[0]
+                ]);
+                
+                $action->session->set('success', 'Signed in Successfully');
+                $action->helper->redirect('database');
+            }
+        } else {
+            $action->session->set('error', "Incorrect email or password");
             $action->helper->redirect('login');
         }
     }
-    
 });
+
+
+
 
 if(!Helper::$isPageisAvailable) { 
     global $action;
