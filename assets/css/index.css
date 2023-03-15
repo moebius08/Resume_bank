@@ -8,6 +8,21 @@
     background-repeat: no-repeat;
     text-align: center;
     margin: auto;
+    margin-left: 10px;
+    padding: 0;
+}
+
+#img-container-aerial {
+    width: 750px;
+    height: 150px;
+    background-image: url('../images/pupaerial.jpg');
+    background-size: cover;
+    /* or "contain" depending on what you want */
+    background-position: 40% 31%;
+    background-repeat: no-repeat;
+    text-align: center;
+    margin: auto;
+    margin-right: 10px;
     padding: 0;
 }
 
