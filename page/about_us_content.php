@@ -4,9 +4,10 @@
 </div>
 
 <h2 style="text-align:center">Our Team</h2>
-<div class="row">
-    <div class="col-lg-2">
-      <div class="card my-5">
+<div class="container">
+<div class="row justify-content-center">
+    <div class="col-lg-3">
+      <div class="card my-5 w-100">
         <div class="card-body text-center">
           <img src="<?=$action->helper->loadimage('espallardo.jpg')?>" alt="avatar"
             class="rounded-circle img-fluid" style="width: 200px;">
@@ -21,8 +22,8 @@
       </div>
     </div>
 
-    <div class="col-lg-2">
-      <div class="card my-5">
+    <div class="col-lg-3">
+      <div class="card my-5 w-100">
         <div class="card-body text-center">
           <img src="<?=$action->helper->loadimage('mcamaing.jpg')?>" alt="avatar"
             class="rounded-circle img-fluid" style="width: 200px;">
@@ -37,8 +38,8 @@
       </div>
     </div>
 
-    <div class="col-lg-2">
-      <div class="card my-5">
+    <div class="col-lg-3">
+      <div class="card my-5 w-100">
         <div class="card-body text-center">
           <img src="<?=$action->helper->loadimage('mcuevas.jpg')?>" alt="avatar"
             class="rounded-circle img-fluid" style="width: 200px;">
@@ -53,8 +54,8 @@
       </div>
     </div>
 
-    <div class="col-lg-2">
-      <div class="card my-5">
+    <div class="col-lg-3">
+      <div class="card my-5 w-100">
         <div class="card-body text-center">
           <img src="<?=$action->helper->loadimage('krgorod.jpg')?>" alt="avatar"
             class="rounded-circle img-fluid" style="width: 200px;">
@@ -68,4 +69,6 @@
         </div>
       </div>
     </div>
+</div>
+
 </div>

@@ -6,6 +6,12 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <ul class="navbar-nav">
+      <li class="about">
+        <a class="nav-link" href="<?=$action->helper->url('about_us_content')?>">About Us</a>
+      </li>
+    </ul>
+
         <?php if ($action->user_id()) {
             $user = $action->db->read('users', 'account_status', "WHERE id={$action->user_id()}")[0];
             if ($user['account_status'] == 0) {
