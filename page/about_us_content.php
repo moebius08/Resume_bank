@@ -4,7 +4,7 @@
 </div>
 
 <h2 style="text-align:center">Our Team</h2>
-<div class="container">
+<div class="container-fluid">
 <div class="row justify-content-center">
     <div class="col-lg-3">
       <div class="card my-5 w-100">

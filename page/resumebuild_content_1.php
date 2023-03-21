@@ -4,11 +4,13 @@ $resume['contact'] = str_replace('\\',"",$resume['contact']);
 $resume['skills'] = str_replace('\\',"",$resume['skills']);
 $resume['works'] = str_replace('\\',"",$resume['experience']);
 $resume['education'] = str_replace('\\',"",$resume['education']);
+$resume['certificates'] = str_replace('\\',"",$resume['certificates']);
 
 $contact = json_decode($resume['contact']);
 $skills = json_decode($resume['skills']);
 $works = json_decode($resume['experience']);
 $education = json_decode($resume['education']);
+$certificates = json_decode($resume['certificates']);
 
 
 
@@ -128,6 +130,35 @@ $education = json_decode($resume['education']);
 
 						</div><!--// .yui-u -->
 					</div><!--// .yui-gf -->
+					<?php 
+								if (isset($certificates) && is_array($certificates) && count($certificates) > 0) {
+									?>
+					
+					<div class="yui-gf">
+	
+						<div class="yui-u first">
+							<h2>Certifications</h2>
+						</div><!--// .yui-u -->
+
+						<div class="yui-u">
+
+						<?php 
+								foreach($certificates as $certificate) {
+									?>
+								<div class="job">
+								<h2><?=$certificate->title?></h2>
+								<h3><?=$certificate->date?></h3>
+								</div>
+									
+									<?php 
+								}
+								?>
+
+						</div><!--// .yui-u -->
+					</div><!--// .yui-gf -->
+					<?php 
+								}
+								?>
 
 
 					<div class="yui-gf last">

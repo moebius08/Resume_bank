@@ -5,3 +5,21 @@
 .removeskill:hover {
     opacity: 0.7;
 }
+
+.skills-column {
+    max-width: 100px;
+    max-height: 100px;
+    /* Set the maximum width of the column */
+    overflow-x: scroll;
+}
+
+.skills-column td {
+    white-space: nowrap;
+}
+
+table.dataTable tbody td,
+table.dataTable tbody th,
+table.dataTable tfoot td,
+table.dataTable tfoot th {
+    height: 5px;
+}

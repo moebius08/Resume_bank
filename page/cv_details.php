@@ -69,6 +69,17 @@
       <button type="button" class="btn btn-primary" id="addeducation">Add</button>
     </div>
   </div>
+  <hr>
+  <div class="mb-3">
+    <label for="inputPassword3" class="col-sm-2 col-form-label fs-4">Certifications</label>
+    <div id='certificates'>
+    </div>
+    <div class="d-flex gap-2">
+      <input type="text" class="form-control mx-2" id="title" placeholder="Certicate title">
+      <input type="text" class="form-control mx-2" id="date" placeholder="2020">
+      <button type="button" class="btn btn-primary" id="addcertificate">Add</button>
+    </div>
+  </div>
 
   <hr>
   <div class="mb-3">

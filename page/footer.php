@@ -159,6 +159,39 @@ if($success){
             $(button).parent().remove();
         }
 
+        $("#addcertificate").click(function(){
+            var title = $('#title').val();
+            var date = $('#date').val();
+            if(!title){
+            Toast.fire({
+                icon: 'error',
+                title: 'Enter a Title'
+             });
+            return;
+            }
+            if(!date){
+            Toast.fire({
+                icon: 'error',
+                title: 'Enter a date'
+             });
+            return;
+            }
+            $("#certificates").append(`
+            <div class="d-inline-block border rounded p-2 my-2">
+            <input type='hidden' name='title[]' value='${title}' />
+            <input type='hidden' name='date[]' value='${date}' />
+            <h4>${title}</h4>
+            <p>(${date})</p>
+            <button type="button" class="btn btn-sm btn-danger" onclick="removecertificate(this)">Remove</button>
+            </div>`);
+            $('#title').val('');
+            $('#date').val('');
+        }) 
+
+        function removecertificate(button) {
+            $(button).parent().remove();
+        }
+
         document.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
     event.preventDefault();

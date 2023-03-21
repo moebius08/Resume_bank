@@ -40,11 +40,17 @@ $action->helper->route('about_us_content',function() {
             $resume_data[5] = json_encode($_POST['skill']);
             $education=array();
             $work=array();
+            $certificate=array();
+
 
             foreach($_POST['college'] as $key=>$value) {
                 $education[$key]['college'] =    $action->db->clean($value);
                 $education[$key]['course'] =     $action->db->clean($_POST['course'][$key]);
                 $education[$key]['e_duration'] = $action->db->clean($_POST['e_duration'][$key]);
+            }
+            foreach($_POST['college'] as $key=>$value) {
+                $certificate[$key]['title'] =    $action->db->clean($value);
+                $certificate[$key]['date'] =     $action->db->clean($_POST['date'][$key]);
             }
 
             foreach($_POST['company'] as $key=>$value) {
@@ -58,9 +64,11 @@ $action->helper->route('about_us_content',function() {
             
             $resume_data[6] = json_encode($work);
             $resume_data[7] = json_encode($education);
-            $resume_data[8] = $action->helper->UID();
+            $resume_data[8] = json_encode($certificate);
 
-            $run=$action->db->insert('resumes','user_id,name,headline,objective,contact,skills,experience,education,url', $resume_data);
+            $resume_data[9] = $action->helper->UID();
+
+            $run=$action->db->insert('resumes','user_id,name,headline,objective,contact,skills,experience,education,certificates,url', $resume_data);
             if($run){
                 $action->session->set('success','Resume Created');
                 $action->helper->redirect('home');
@@ -185,10 +193,10 @@ $action->helper->route('home',function() {
     $data['myresumes'] = 'active';
     $data['resumes'] = $action->db->read('resumes', '*');
 
-     $action->view->load('home_header',$data);
+     $action->view->load('all_resume_header',$data);
      $action->view->load('navbar',$data);
      $action->view->load('all_resume',$data);
-     $action->view->load('footer');
+     $action->view->load('all_resume_footer');
     });
     
 
