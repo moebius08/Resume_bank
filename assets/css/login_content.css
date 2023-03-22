@@ -1,0 +1,13 @@
+#img-container {
+    width: 750px;
+    height: 953px;
+    background-image: url("pupimg.jpg");
+    background-size: cover;
+    /* or "contain" depending on what you want */
+    background-repeat: no-repeat;
+    text-align: left;
+    margin: auto;
+    padding: 0;
+    object-fit: contain;
+    background-position: 75% 31%;
+}
