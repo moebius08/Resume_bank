@@ -46,7 +46,7 @@
             <h2>Moris Assanty Cuevas</h2>
             <p class="title">Developer</p>
             <p>.</p>
-            <p>moriscuevas3@gmail.com</p>
+            <p>morisassantycuevas@gmail.com</p>
             <p><button class="button">Contact</button></p>
           <div class="d-flex justify-content-center mb-2">
           </div>
