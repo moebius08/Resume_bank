@@ -4,6 +4,44 @@
       <div class="card-header">
         <h2>All Resumes</h2>
       </div>
+
+      <div class="row">
+						<div class="col-md-6 col-lg-3 col-xl">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col mt-0">
+											<h5 class="card-title">Registered Users</h5>
+										</div>
+
+										<div class="col-auto">
+										</div>
+									</div>
+									
+
+								</div>
+							</div>
+						</div>
+
+            <div class="col-md-6 col-lg-3 col-xl">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col mt-0">
+											<h5 class="card-title">Resume Count</h5>
+										</div>
+
+										<div class="col-auto">
+										</div>
+									</div>
+									
+
+								</div>
+							</div>
+						</div>
+                </div>
+
+
       <table id="resumes-table" class="table table-bordered table-striped">
         <thead>
           <tr>
@@ -58,16 +96,6 @@
             </tr>
           <?php endforeach ?>
         </tbody>
-        <tfoot>
-        <tr>
-            <th>Full Name</th>
-            <th>Course/s</th>
-            <th>Email</th>
-            <th>Cellphone Number</th>
-            <th>Skills</th>
-            <th>Action</th>
-          </tr>
-        </tfoot>
       </table>
       <?php if (count($resumes) < 1): ?>
         <div class="card my-3">
