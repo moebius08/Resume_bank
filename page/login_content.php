@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-        <img src="{{ asset('images/pupimg.jpg') }}" alt="Image Description">
+        <img src="<?=$action->helper->loadimage('pupimg.jpg')?>" alt="Image Description">
       </div>
       <div class="col-md-8">
         <main class="form-signin w-100 m-auto">
