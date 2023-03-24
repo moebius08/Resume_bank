@@ -8,13 +8,13 @@ $(document).ready(function() {
     $('#resumes-table').DataTable({
         dom: 'Pfrtip',
         columns: [
-            { data: 'name', title: 'Full Name' },
+            { data: 'name', title: 'Full Name' , searchPanes: { show: false }},
             { data: 'courses', title: 'Course/s', searchPanes: { show: true } },
-            { data: 'email', title: 'Email' },
-            { data: 'cellphone', title: 'Cellphone Number' },
+            { data: 'email', title: 'Email' , searchPanes: { show: false }},
+            { data: 'cellphone', title: 'Cellphone Number' , searchPanes: { show: false }},
             { data: 'skills', title: 'Skills', className: 'skills-header' },
             { data: 'action', title: 'Action' },
-        ]
+        ]   
     });
 });
 

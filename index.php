@@ -87,7 +87,6 @@ $action->helper->route('action/logout',function() {
     $action->session->set('success','Logged Out');
     $action->helper->redirect('login');
     });
-
 //for delete
 $action->helper->route('resume/deleteresume/$url',function($data) {
     global $action;
@@ -95,8 +94,6 @@ $action->helper->route('resume/deleteresume/$url',function($data) {
     $action->db->delete('resumes',"url='$url'");
     $action->session->set('success','Resume Deleted');
     $action->helper->redirect('home');
-
-
     });
 
 
@@ -198,6 +195,18 @@ $action->helper->route('home',function() {
      $action->view->load('all_resume',$data);
      $action->view->load('all_resume_footer');
     });
+
+    //for all resume
+    $action->helper->route('admin_dashboard',function() {
+        global $action;
+        $data['title'] = 'ResumeBank';
+        $data['myresumes'] = 'active';
+        $data['resumes'] = $action->db->read('resumes', '*');
+        $data['users'] = $action->db->read('users', '*');
+    
+         $action->view->load('admin_dashboard',$data);
+        });
+        
     
 
 //for signup
