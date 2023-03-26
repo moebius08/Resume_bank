@@ -76,11 +76,9 @@ $usersWithoutResume = count($data['users']) - $usersWithResume;
                 ?>
                 <ul class="navbar-nav d-flex ml-auto">
                 <li class="nav-item">
-                <a class="nav-link" href="<?=$action->helper->url('database')?>">Database</a>
+                <a class="nav-link" href="<?=$action->helper->url('super_admin')?>">Super Admin Dashboard</a>
             </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?=$action->helper->url('admin_dashboard')?>">Admin Dashboard</a>
-                        </li>
+                       
                     <li class="nav-item">
                         <a class="nav-link" href="<?=$action->helper->url('action/logout')?>">Logout</a>
                     </li>

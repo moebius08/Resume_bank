@@ -47,7 +47,17 @@
             </li>
         </ul>
         <?php
-    }
+    }elseif ($user['account_status'] == 3) {
+    ?>
+    <ul class="navbar-nav d-flex ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="<?=$action->helper->url('super_admin')?>">Super Admin Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?=$action->helper->url('action/logout')?>">Logout</a>
+        </li>
+    </ul>
+    <?php
 } else {
     ?>
     <ul class="navbar-nav d-flex ml-auto">
@@ -59,7 +69,7 @@
         </li>
     </ul>
     <?php
-}
+}}
 ?>
 
     </div>
