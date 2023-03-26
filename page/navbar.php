@@ -12,43 +12,55 @@
       </li>
     </ul>
 
-        <?php if ($action->user_id()) {
-            $user = $action->db->read('users', 'account_status', "WHERE id={$action->user_id()}")[0];
-            if ($user['account_status'] == 0) {
-                ?>
-                <ul class="navbar-nav d-flex ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link <?=@$myresumes?>" href="<?=$action->helper->url('home')?>">My Resumes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?=$action->helper->url('action/logout')?>">Logout</a>
-                    </li>
-                </ul>
-                <?php
-            } else {
-                ?>
-                <ul class="navbar-nav d-flex ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?=$action->helper->url('database')?>">Database</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?=$action->helper->url('action/logout')?>">Logout</a>
-                    </li>
-                </ul>
-                <?php
-            }
-        } else {
-            ?>
-            <ul class="navbar-nav d-flex ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="<?=$action->helper->url('login')?>">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?=$action->helper->url('signup')?>">Sign up</a>
-                </li>
-            </ul>
-            <?php
-        }
+    <?php if ($action->user_id()) {
+    $user = $action->db->read('users', 'account_status', "WHERE id={$action->user_id()}")[0];
+    if ($user['account_status'] == 0) {
         ?>
+        <ul class="navbar-nav d-flex ml-auto">
+            <li class="nav-item">
+                <a class="nav-link <?=@$myresumes?>" href="<?=$action->helper->url('home')?>">My Resumes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?=$action->helper->url('action/logout')?>">Logout</a>
+            </li>
+        </ul>
+        <?php
+    } elseif ($user['account_status'] == 1) {
+        ?>
+        <ul class="navbar-nav d-flex ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="<?=$action->helper->url('database')?>">Database</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?=$action->helper->url('action/logout')?>">Logout</a>
+            </li>
+        </ul>
+        <?php
+    } elseif ($user['account_status'] == 2) {
+        ?>
+        <ul class="navbar-nav d-flex ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="<?=$action->helper->url('admin_dashboard')?>">Admin Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?=$action->helper->url('action/logout')?>">Logout</a>
+            </li>
+        </ul>
+        <?php
+    }
+} else {
+    ?>
+    <ul class="navbar-nav d-flex ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="<?=$action->helper->url('login')?>">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<?=$action->helper->url('signup')?>">Sign up</a>
+        </li>
+    </ul>
+    <?php
+}
+?>
+
     </div>
 </nav>

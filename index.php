@@ -177,6 +177,13 @@ $action->helper->route('home',function() {
 
     $data['resumes']=$action->db->read('resumes','*',"WHERE user_id=".$action->user_id());
 
+    $user_account_status = get_user_account_status($action);
+    if ($user_account_status != 0) {
+        echo "Access denied. You don't have permission to access this page.";
+        $action->helper->redirect('/');
+        exit;
+    }
+
      $action->view->load('home_header',$data);
      $action->view->load('navbar',$data);
      $action->view->load('home_content',$data);
@@ -189,6 +196,12 @@ $action->helper->route('home',function() {
     $data['title'] = 'ResumeBank';
     $data['myresumes'] = 'active';
     $data['resumes'] = $action->db->read('resumes', '*');
+    $user_account_status = get_user_account_status($action);
+    if ($user_account_status != 1 && $user_account_status != 2) {
+        echo "Access denied. You don't have permission to access this page.";
+        $action->helper->redirect('/');
+        exit;
+    }
 
      $action->view->load('all_resume_header',$data);
      $action->view->load('navbar',$data);
@@ -196,16 +209,126 @@ $action->helper->route('home',function() {
      $action->view->load('all_resume_footer');
     });
 
-    //for all resume
-    $action->helper->route('admin_dashboard',function() {
-        global $action;
-        $data['title'] = 'ResumeBank';
-        $data['myresumes'] = 'active';
-        $data['resumes'] = $action->db->read('resumes', '*');
-        $data['users'] = $action->db->read('users', '*');
+    // Function to get the current user's account status
+function get_user_account_status($action) {
+    $user_id = $action->user_id();
+    $user = $action->db->read('users', 'account_status', "WHERE id='$user_id'");
+    return $user[0]['account_status'];
+}
+
+// Example usage in the admin_dashboard route
+$action->helper->route('admin_dashboard', function() {
+    global $action;
+    $data['title'] = 'ResumeBank';
+    $data['myresumes'] = 'active';
+    $data['resumes'] = $action->db->read('resumes', '*');
+    $data['users'] = $action->db->read('users', '*',"WHERE account_status=0 OR account_status=1");
     
-         $action->view->load('admin_dashboard',$data);
+    $user_account_status = get_user_account_status($action);
+    if ($user_account_status != 2) {
+        echo "Access denied. You don't have permission to access this page.";
+        $action->helper->redirect('home');
+        exit;
+    }
+    
+    $users = $action->db->read('users', 'id,full_name', "WHERE id='".$action->user_id()."'");
+    $data['user'] = $users[0];
+    
+    $action->view->load('admin_dashboard', $data);
+});
+
+// Example usage in the admin_dashboard route
+$action->helper->route('super_admin', function() {
+    global $action;
+    $data['title'] = 'ResumeBank';
+    $data['myresumes'] = 'active';
+    $data['resumes'] = $action->db->read('resumes', '*');
+    $data['users'] = $action->db->read('users', '*',"WHERE account_status=2");
+    
+    $user_account_status = get_user_account_status($action);
+    if ($user_account_status != 3) {
+        echo "Access denied. You don't have permission to access this page.";
+        $action->helper->redirect('home');
+        exit;
+   }
+    
+    $users = $action->db->read('users', 'id,full_name', "WHERE id='".$action->user_id()."'");
+    $data['user'] = $users[0];
+    
+    $action->view->load('super_admin_dashboard', $data);
+});
+
+
+$action->helper->route('action/add_admin', function() { 
+    global $action;
+    if (isset($_POST['full_name']) && isset($_POST['email']) && isset($_POST['password'])) {
+    
+        $error =$action->helper->isAnyEmpty($_POST);
+    if($error){
+        $action->session->set('error',"$error is empty!");
+        print_r($_POST);
+        $action->helper->redirect('super_admin');
+    
+    }else {        
+        $signup_data[0]=$action->db->clean($_POST['full_name']);
+        $signup_data[1]=$action->db->clean($_POST['email']);
+        $signup_data[2]=$action->db->clean($_POST['password']);
+        $signup_data[3]= '2';
+        $users = $action->db->read('users','email',"WHERE email='$signup_data[1]'");
+        if(count($users)> 0) {
+            $action->session->set('error',"$signup_data[1] is already registered");
+            $action->helper->redirect('super_admin');
+        }else {
+            $action->db->insert('users','full_name, email, password, account_status', $signup_data);
+            $action->session->set('success','Registered Successfully');
+            $action->helper->redirect('super_admin');
+        }
+    }
+}});
+    
+
+
+        // Updating Account Status
+    $action->helper->route('action/user_update', function() {
+        global $action;
+
+        if(isset($_POST['updateBtn'])) {
+
+        $user_id = $_POST['User_id'];
+        $account_status = $_POST['account_status'];
+
+        // Perform update query here with the $user_id and $account_status
+        // Update query
+            $table_name = "users"; // replace with your table name
+            $action->db->update($table_name, 'account_status', [$account_status], "id = $user_id");
+        $action->helper->redirect('admin_dashboard');}
+    });
+
+    
+
+
+    // For deleting Data
+    $action->helper->route('action/user_delete', function() {
+        global $action;
+        if(isset($_POST['DeleteUserBtn'])) {
+        $user_id = $_POST['delete_id'];
+        $table_name = "users"; // replace with your table name
+        $conditions = "id = $user_id";
+        $action->db->delete($table_name, $conditions); // execute the delete query
+        $action->helper->redirect('admin_dashboard');
+    }
         });
+
+        $action->helper->route('action/super_delete', function() {
+            global $action;
+            if(isset($_POST['DeleteUserBtn'])) {
+            $user_id = $_POST['delete_id'];
+            $table_name = "users"; // replace with your table name
+            $conditions = "id = $user_id";
+            $action->db->delete($table_name, $conditions); // execute the delete query
+            $action->helper->redirect('super_admin');
+        }
+            });
         
     
 
@@ -221,7 +344,6 @@ $action->helper->route('signup',function($data) {
 //for signup action
 $action->helper->route('action/signup',function() {
     global $action;
-    print_r($_POST);
     $error =$action->helper->isAnyEmpty($_POST);
     if($error){
         $action->session->set('error',"$error is empty!");
@@ -240,8 +362,39 @@ $action->helper->route('action/signup',function() {
             $action->session->set('success','Registered Successfully');
             $action->helper->redirect('login');
         }
+    }
+});
 
+$action->helper->route('action/super_update', function() {
+    global $action;
 
+    
+
+    if(!empty($_POST)) {
+        echo'Form submitted';
+    $user_id = $_POST['User_id'];
+    
+    $error =$action->helper->isAnyEmpty($_POST);
+    // Perform update query here with the $user_id and $account_status
+    // Update query
+    }if($error){
+        $action->session->set('error',"$error is empty!");
+        print_r($_POST);
+    }else{
+        $signup_data = array(
+        $action->db->clean($_POST['full_name']),
+        $action->db->clean($_POST['email']),
+        $action->db->clean($_POST['password'])
+    );
+    $users = $action->db->read('users','email',"WHERE email='$signup_data[1]'");
+    if(count($users)> 0) {
+        $action->session->set('error',"$signup_data[1] is already registered");
+        $action->helper->redirect('super_admin');
+    }else {
+        $table_name = "users"; // replace with your table name
+    $action->db->update($table_name, 'full_name,email,password', $signup_data, "id = $user_id");
+    $action->helper->redirect('super_admin');
+    }
     }
 });
 //for login
@@ -286,13 +439,28 @@ $action->helper->route('action/login', function() {
                 
                 $action->session->set('success', 'Signed in Successfully');
                 $action->helper->redirect('database');
-            }
+            } elseif ($user_status == 2) {
+                $action->session->set('Auth', [
+                    'status' => true,
+                    'data' => $user[0]
+                ]);
+                $action->session->set('success', 'Signed in Successfully');
+                $action->helper->redirect('admin_dashboard');
+            }elseif ($user_status == 3) {
+                $action->session->set('Auth', [
+                    'status' => true,
+                    'data' => $user[0]
+                ]);
+                $action->session->set('success', 'Signed in Successfully');
+                $action->helper->redirect('super_admin');
+        
         } else {
             $action->session->set('error', "Incorrect email or password");
             $action->helper->redirect('login');
         }
+        
     }
-});
+}});
 
 
 
