@@ -41,7 +41,14 @@ $usersWithoutResume = count($data['users']) - $usersWithResume;
 
  
 <!-- jQuery -->
-
+<style>
+    .card-header {
+        padding-bottom: 10px;
+    }
+    .row {
+  padding-bottom: 30px;
+}
+    </style>
 </head>
  <body>
 
@@ -107,7 +114,7 @@ $usersWithoutResume = count($data['users']) - $usersWithResume;
   <div class="row justify-content-center">
     <div class="col">
       <div class="card-header">
-        <h2>All Resumes</h2>
+        <h2>User Database</h2>
       </div>
 
       <div class="row">
@@ -171,7 +178,7 @@ $usersWithoutResume = count($data['users']) - $usersWithResume;
                 </div>
                 </div></div>
     </div>
-                <table id="users-table" class="table table-bordered table-striped">
+    <table id="users-table" class="table table-bordered table-striped table-with-padding">
   <thead>
     <tr>
       <th>ID</th>
