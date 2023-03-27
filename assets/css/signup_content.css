@@ -1,5 +1,5 @@
-#my-image {
-    width: 70%;
+/* #aerial-image {
+    width: 325%;
     height: 94.4vh;
     object-fit: cover;
     justify-content: left;
@@ -7,7 +7,7 @@
     margin: 0;
     padding: 0;
     align-items: left;
-    left: -50px;
+    left: -381px;
     position: absolute;
 }
 
@@ -16,18 +16,5 @@
     justify-content: end;
     padding-top: 100px;
     align-items: end;
-    left: 200%;
-}
-
-#aerial-image {
-    width: 70%;
-    height: 94.4vh;
-    object-fit: cover;
-    justify-content: left;
-    float: left;
-    margin: 0;
-    padding: 0;
-    align-items: left;
-    left: -50px;
-    position: absolute;
-}
+    left: 100px;
+} */

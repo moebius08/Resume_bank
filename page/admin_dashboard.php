@@ -237,8 +237,8 @@ $usersWithoutResume = count($data['users']) - $usersWithResume;
 												&nbspChange User Account Status? <br>
 												&nbsp<select class="form-select" aria-label="Default select example" id="account_status" name="account_status" required>
                                                 
-                                                    <option value=0>0</option>
-                                                    <option value=1>1</option>
+                                                    <option value=0>User</option>
+                                                    <option value=1>Company</option>
                                                 </select>
 											
 												

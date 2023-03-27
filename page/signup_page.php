@@ -15,10 +15,10 @@
 <body class="text-center">
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
-        <img src="<?=$action->helper->loadimage('pupaerial.jpg')?>" alt="Image Description">
+      <div class="signup-image">
+        <img src="<?=$action->helper->loadimage('pupaerial.jpg')?>" alt="Image Description" id="aerial-image">
       </div>
-      <div class="col-md-8">
+      <div class="col-md-5">
         <main class="form-signin w-100 m-auto">
           <form method='post' action='<?=$action->helper->url('action/signup')?>'>
             <h1 class="h3 mb-3 fw-normal">Create an Account</h1>
