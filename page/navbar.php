@@ -58,7 +58,7 @@
         </li>
     </ul>
     <?php
-} else {
+}}else {
     ?>
     <ul class="navbar-nav d-flex ml-auto">
         <li class="nav-item">
@@ -69,7 +69,7 @@
         </li>
     </ul>
     <?php
-}}
+}
 ?>
 
     </div>
