@@ -1,13 +1,40 @@
-#img-container {
-    width: 750px;
-    height: 953px;
-    background-image: url("pupimg.jpg");
-    background-size: cover;
-    /* or "contain" depending on what you want */
-    background-repeat: no-repeat;
-    text-align: left;
-    margin: auto;
-    padding: 0;
-    object-fit: contain;
-    background-position: 75% 31%;
+#my-image {
+    width: 100%;
+    height: 111.5%;
+    object-fit: cover;
+    align-content: left;
+    float: left;
 }
+
+
+/* .login-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    align-content: left;
+} */
+
+
+/* .image-overlay {
+    width: 100px !important;
+    height: 100px !important;
+} */
+
+
+/* .my-container form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+} */
+
+
+/* #img-container {
+    width: 25%;
+    height: 100%;
+    background-image: url("pupimg.jpg") !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: left;
+    margin: 0;
+    padding: 0;
+} */

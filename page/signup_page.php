@@ -1,4 +1,16 @@
-
+<title>Sign up Page</title>    
+  </head>
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #800;">
+    <div class="container-fluid">
+      <a class="navbar-brand logo" href="index.php">Resume<strong>BANK</strong></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <ul class="navbar-nav mr-auto" >
+    </ul>
+  </nav>
 
 <body class="text-center">
   <div class="container">
