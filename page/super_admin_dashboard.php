@@ -76,11 +76,9 @@ $usersWithoutResume = count($data['users']) - $usersWithResume;
                 ?>
                 <ul class="navbar-nav d-flex ml-auto">
                 <li class="nav-item">
-                <a class="nav-link" href="<?=$action->helper->url('database')?>">Database</a>
+                <a class="nav-link" href="<?=$action->helper->url('super_admin')?>">Super Admin Dashboard</a>
             </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?=$action->helper->url('admin_dashboard')?>">Admin Dashboard</a>
-                        </li>
+                       
                     <li class="nav-item">
                         <a class="nav-link" href="<?=$action->helper->url('action/logout')?>">Logout</a>
                     </li>
@@ -107,8 +105,10 @@ $usersWithoutResume = count($data['users']) - $usersWithResume;
   <div class="row justify-content-center">
     <div class="col">
       <div class="card-header">
-        <h2>All Resumes</h2>
+        <h2>Admin Accounts Management</h2>
+        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#addAdmin" data-dismiss="modal"> <i class="ion ion-ios-person-add"></i>&nbsp;ADD ADMIN </button>
       </div>
+      
 
       <div class="row">
 						<div class="col-md-6 col-lg-3 col-xl">
@@ -199,8 +199,55 @@ $usersWithoutResume = count($data['users']) - $usersWithResume;
       </tr>
     <?php endforeach ?>
   </tbody>
+  <div class="modal fade" id="addAdmin" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3 class="modal-title"><i class="fas fa-user"></i>Add an Admin</h3>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<!-- modal edit form-->
+								</div>
+								<div class="card">
+
+									<div class="card-body">
+										<form action="<?=$action->helper->url('action/add_admin')?>" id="" method="POST">
+											<!-- <div class="form-group">
+												<label class="form-label">ID</label>
+												<input type="number" class="form-control" name="ID" placeholder="ID" id="ID" required>
+											</div> -->
+											<div class="form-group">
+												<label class="form-label">Full Name</label>
+												<input type="text" class="form-control" name="full_name" placeholder="Name" id="full_name" required>
+											</div>
+											<div class="form-group">
+												<label class="form-label">Email</label>
+												<input type="email" class="form-control" name="email" placeholder="Email" id="email" required>
+											</div>
+											<div class="form-group">
+												<label class="form-label">Password</label>
+												<input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
+												<span>
+												<i class="fa fa-eye" id="pw_toggle" onclick="togglePW()" aria-hidden="true"></i>
+											</span>
+												</input>
+											</div> 
+											<div class="modal-footer">
+												<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+												<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#savingEdit"> Add</button>
+											</div>
+										</form>
+										<!--end of modal form-->
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
 
   <div class="modal fade" id="centeredEditingModal" tabindex="-1" role="dialog" aria-hidden="true">
+
 						<div class="modal-dialog modal-dialog-centered" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -213,45 +260,41 @@ $usersWithoutResume = count($data['users']) - $usersWithResume;
 								<!-- di pa gawa -->
 
 								<div class="card">
-									<div class="card-body">
+    <div class="card-body">
+        <form action="<?=$action->helper->url('action/super_update')?>" method="POST">
 
-										<form action="<?=$action->helper->url('action/user_update')?>" method="POST">
-											<input type="hidden" name="update_id" id="update_id">
+            <div class="form-group">
+                <label class="form-label">ID</label>
+                <input type="text" class="form-control" name="User_id" id="User_id" readonly>
+            </div>
 
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" name="full_name" id="full_name" required>
+            </div>
 
-											<div class="form-group">
-												<label class="form-label">ID</label>
-												<input type="text" class="form-control" name="User_id" id="User_id" readonly>
-											</div>
-											<div class="form-group">
-												<label class="form-label">Full Name</label>
-												<input type="text" class="form-control" name="User_name" id="User_name" readonly>
-											</div>
-											<div class="form-group">
-												<label class="form-label">Email</label>
-												<input type="text" class="form-control" name="User_email" id="User_email" readonly>
-											</div>
-											<div class="form-group">
-												<label class="form-label">Account Status</label><br>
-											
-												&nbspChange User Account Status? <br>
-												&nbsp<select class="form-select" aria-label="Default select example" id="account_status" name="account_status" required>
-                                                
-                                                    <option value=0>0</option>
-                                                    <option value=1>1</option>
-                                                </select>
-											
-												
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-												<button type="submit" name="updateBtn" class="btn btn-primary" data-toggle="modal" data-target="#savingEdit"> Save changes</button>
-											</div>
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="text" class="form-control" name="email" id="email" >
+            </div>
 
-										</form>
-										<!--end of modal form-->
-									</div>
-								</div>
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
+                <span>
+                    <!--<i class="fa fa-eye" id="pw_toggle" onclick="togglePW()" aria-hidden="true"></i>-->
+                </span>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#savingEdit"> Save changes</button>
+            </div>
+        </form>
+        <!--end of modal form-->
+    </div>
+</div>
+
 							</div>
 						</div>
 					</div>
@@ -265,7 +308,7 @@ $usersWithoutResume = count($data['users']) - $usersWithResume;
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
-								<form action="<?=$action->helper->url('action/user_delete')?>" method="POST">
+								<form action="<?=$action->helper->url('action/super_delete')?>" method="POST">
 									<div class="modal-body m-3">
 										<input type="hidden" name="delete_id" id="delete_id">
 										<p class="mb-0">Are you sure you are going to make changes?</p>
@@ -291,6 +334,7 @@ $usersWithoutResume = count($data['users']) - $usersWithResume;
 <script src="https://cdn.datatables.net/searchpanes/2.1.2/js/dataTables.searchPanes.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
 $(function() {
@@ -315,9 +359,9 @@ $('.updateBtn').on('click', function() {
     console.log(data);
 
     $('#User_id').val(data[0]);
-    $('#User_name').val(data[1]);
-    $('#User_email').val(data[2]);
-    $('#account_status').val(data[3]);
+    $('#full_name').val(data[1]);
+    $('#email').val(data[2]);
+    $('#password').val(data[3]);
 
 });
 });
@@ -343,7 +387,41 @@ $('.deleteBtn').on('click', function() {
 });
 });
 
+const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+        <?php 
+        $error = $action->session->get('error');
+        $success = $action->session->get('success');
+        if($error){
+        ?>
+        Toast.fire({
+        icon: 'error',
+        title: '<?=$error?>'
+        });
 
+            <?php
+            $action->session->delete('error');
+        }                    
+if($success){
+        ?> 
+        Toast.fire({
+        icon: 'success',
+        title: '<?=$success?>'
+        });
+
+            <?php
+            $action->session->delete('success');
+        }
+        ?>
 </script>
 
 </body>

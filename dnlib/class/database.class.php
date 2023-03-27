@@ -66,7 +66,6 @@ private $connection;
         $obj = $this->connection->prepare($query);
         $obj->bind_param($this->getBindParmsDataType($values),...$values);
         return $obj->execute();
-        
     }
 
     public function read($table,$columns="*",$conditions=''){
