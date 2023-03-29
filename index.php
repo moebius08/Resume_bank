@@ -454,13 +454,13 @@ $action->helper->route('action/login', function() {
                 $action->session->set('success', 'Signed in Successfully');
                 $action->helper->redirect('super_admin');
         
-        } else {
+        }} else {
             $action->session->set('error', "Incorrect email or password");
             $action->helper->redirect('login');
         }
         
     }
-}});
+});
 
 
 
