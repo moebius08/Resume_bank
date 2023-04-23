@@ -303,7 +303,14 @@ $usersWithoutResume = count($data['users']) - $usersWithResume;
 $(function() {
 			// Datatables basic
 			$('#users-table').DataTable({
-				responsive: true
+				responsive: true,
+                dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
 			});
 		});
 
